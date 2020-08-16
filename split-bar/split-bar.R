@@ -3,7 +3,7 @@ library(dplyr)
 library(magick)
 
 # Read in image and convert to grayscale
-img <- image_read("split-bar/images/keanu.jpg") %>%
+img <- image_read("split-bar/images/Luis.jpg") %>%
   image_convert(colorspace = "gray")
 
 # Get dimensions
@@ -32,13 +32,14 @@ img_df <- as.data.frame.table(img_array) %>%
 		)
 
 # Colors, fill and background
-col_fill <- "black"
-col_bg <- "#F1E34C"
+col_fill <- "#23395d"
+col_bg <- "white"
 
 ggplot(img_df) +
 	geom_rect(aes(xmin = x, xmax = x + bf * 0.9, ymin = y, ymax = y + 0.85), fill = col_fill, color = NA) +
   scale_y_reverse() +
   coord_fixed(expand = FALSE) +
   theme_void() +
-  theme(legend.position = "none", plot.background = element_rect(fill = col_bg, color = NA)) +
-	ggsave("split-bar/plots/keanu.png")
+  theme(legend.position = "none", 
+        plot.background = element_rect(fill = col_bg, color = NA)) +
+ggsave("split-bar/plots/luis.bars.png")
